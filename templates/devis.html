@@ -1,0 +1,60 @@
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { font-family: sans-serif; font-size: 12px; margin: 40px; }
+    header { text-align: right; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { padding: 8px; border: 1px solid #333; }
+    tfoot td { font-weight: bold; }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="{{ logo_url }}" alt="Logo" width="120">
+  </header>
+  <h1>DEVIS</h1>
+  <p><strong>Client&nbsp;:</strong> {{ client }}</p>
+  <p><strong>Travaux&nbsp;:</strong> {{ travaux }}</p>
+  <p><strong>Surface&nbsp;:</strong> {{ surface }} m²</p>
+  <table>
+    <thead>
+      <tr><th>Description</th><th>Quantité</th><th>PU</th><th>Total</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ travaux }}</td>
+        <td>{{ surface }}</td>
+        <td>{{ tarif }} €</td>
+        <td>{{ '%.2f'|format(surface*tarif) }} €</td>
+      </tr>
+      <tr>
+        <td>Marge / frais divers</td>
+        <td>-</td>
+        <td>-</td>
+        <td>{{ '%.2f'|format(marge) }} €</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3">Total HT</td>
+        <td>{{ '%.2f'|format(total_ht) }} €</td>
+      </tr>
+      <tr>
+        <td colspan="3">TVA ({{ tva }}%)</td>
+        <td>{{ '%.2f'|format(total_tva) }} €</td>
+      </tr>
+      <tr>
+        <td colspan="3">Total TTC</td>
+        <td>{{ '%.2f'|format(total_ttc) }} €</td>
+      </tr>
+    </tfoot>
+  </table>
+  <footer style="position: fixed; bottom: 20px; font-size: 10px; width: 100%; text-align: center;">
+    Mentions légales : Société XYZ • SIREN 123 456 789 • TVA FR55 123456789
+  </footer>
+</body>
+</html>
+```
